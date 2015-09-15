@@ -1,0 +1,14 @@
+PODS:
+  - TIMapboxGeocoder (0.1.0)
+
+DEPENDENCIES:
+  - TIMapboxGeocoder (from `../`)
+
+EXTERNAL SOURCES:
+  TIMapboxGeocoder:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  TIMapboxGeocoder: b0fe8645993dee083d0b4b8c6c71541f0e9f7202
+
+COCOAPODS: 0.38.2

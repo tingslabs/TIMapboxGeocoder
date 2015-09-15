@@ -1,0 +1,25 @@
+{
+  "name": "TIMapboxGeocoder",
+  "version": "0.1.0",
+  "summary": "A short description of TIMapboxGeocoder.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/TIMapboxGeocoder",
+  "license": "MIT",
+  "authors": {
+    "Benjamin Digeon": "BenjaminDigeon@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/TIMapboxGeocoder.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "TIMapboxGeocoder": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}

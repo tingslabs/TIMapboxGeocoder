@@ -1,0 +1,6 @@
+framework module Pods_TIMapboxGeocoder_Tests {
+  umbrella header "Pods-TIMapboxGeocoder_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

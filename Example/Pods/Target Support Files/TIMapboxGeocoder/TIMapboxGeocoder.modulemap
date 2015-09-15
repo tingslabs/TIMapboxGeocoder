@@ -1,0 +1,6 @@
+framework module TIMapboxGeocoder {
+  umbrella header "TIMapboxGeocoder-umbrella.h"
+
+  export *
+  module * { export * }
+}

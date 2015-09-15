@@ -1,15 +1,8 @@
 # TIMapboxGeocoder
 
-[![CI Status](http://img.shields.io/travis/Benjamin Digeon/TIMapboxGeocoder.svg?style=flat)](https://travis-ci.org/Benjamin Digeon/TIMapboxGeocoder)
-[![Version](https://img.shields.io/cocoapods/v/TIMapboxGeocoder.svg?style=flat)](http://cocoapods.org/pods/TIMapboxGeocoder)
-[![License](https://img.shields.io/cocoapods/l/TIMapboxGeocoder.svg?style=flat)](http://cocoapods.org/pods/TIMapboxGeocoder)
-[![Platform](https://img.shields.io/cocoapods/p/TIMapboxGeocoder.svg?style=flat)](http://cocoapods.org/pods/TIMapboxGeocoder)
-
-## Usage
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
 ## Requirements
+
+ios7 or highter
 
 ## Installation
 
@@ -20,9 +13,64 @@ it, simply add the following line to your Podfile:
 pod "TIMapboxGeocoder"
 ```
 
+## Usage
+
+First, import this lib:
+
+```objective-c
+#import "TIMapboxGeocoder.h"
+```
+
+### Initialization
+
+```objective-c
+    TIMapboxGeocoder* geocoder = [[TIMapboxGeocoder alloc] initWithAccessToken:@"XXXX-XXXXX-XXXXX"];
+```
+
+You need a Mapbox access token
+
+### Geocoding
+
+```objective-c
+    TIMapboxGeocoder* geocoder = [[TIMapboxGeocoder alloc] initWithAccessToken:@"XXXX-XXXXX-XXXXX"];
+    [geocoder geocodeAddressString:@"Paris" proximity:nil completionHandler:^(NSArray *results, NSError *error) {
+        if (error) {
+            // Handle error
+        }
+        TIPlacemark* placemark = results.firstObject;
+        NSLog(@"First placemark name : %@", placemark.name);
+    }]; 
+```
+
+Nb : proximity can be nil or a `CLLocation` object near the search area
+
+### Reverse Geocoding
+
+```objective-c
+    CLLocation* location = [[CLLocation alloc] initWithLatitude:0.0 longitude:0.0];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *results, NSError *error) {
+        if (error) {
+            // Handle error
+        }
+        TIPlacemark* placemark = results.firstObject;
+        NSLog(@"First placemark name : %@", placemark.name);
+}];
+```
+
+### TIPlacemark object
+
+```objective-c
+@interface TIPlacemark : NSObject
+
+- (CLLocation*) location;
+- (NSString*) name;
+
+@end
+```
+
 ## Author
 
-Benjamin Digeon, BenjaminDigeon@gmail.com
+Benjamin Digeon, TingsLabs (http://www.tingslabs.com), benjamin@tingslabs.com
 
 ## License
 
