@@ -72,6 +72,12 @@ Nb : proximity can be nil or a `CLLocation` object near the search area
 
 Benjamin Digeon, TingsLabs (http://www.tingslabs.com), benjamin@tingslabs.com
 
+## Credits
+
+This Objective-C implementation is inspired by the original MapBox Geocoder implementation.
+
+Check out the original Swift implementation here: https://github.com/mapbox/MapboxGeocoder.swift
+
 ## License
 
 TIMapboxGeocoder is available under the MIT license. See the LICENSE file for more info.
