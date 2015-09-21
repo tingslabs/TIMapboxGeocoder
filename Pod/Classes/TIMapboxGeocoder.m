@@ -34,10 +34,10 @@ NSString * const TIGeocoderErrorDomain = @"TIGeocoderErrorDomain";
                           types:(TIGeocoderType) types
               completionHandler:(void (^)(NSArray *results, NSError *error)) completionHandler {
     NSURLSession *session = [NSURLSession sharedSession];
-    NSString *pathSting = [NSString stringWithFormat:@"https://api.tiles.mapbox.com/v4/geocode/mapbox.places/%f,%f.json?access_token=%@",location.coordinate.longitude, location.coordinate.latitude, self.accessToken];
+    NSString *pathSting = [NSMutableString stringWithFormat:@"https://api.tiles.mapbox.com/v4/geocode/mapbox.places/%f,%f.json?access_token=%@",location.coordinate.longitude, location.coordinate.latitude, self.accessToken];
     
     if(types) {
-        [pathSting stringByAppendingString:[TIMapboxGeocoder typesParamsWithTypes:types]];
+        pathSting = [pathSting stringByAppendingString:[TIMapboxGeocoder typesParamsWithTypes:types]];
     }
     
     NSURL *path = [NSURL URLWithString:pathSting];
@@ -67,14 +67,14 @@ NSString * const TIGeocoderErrorDomain = @"TIGeocoderErrorDomain";
             completionHandler:(void (^)(NSArray *results, NSError *error)) completionHandler {
     
     NSURLSession *session = [NSURLSession sharedSession];
-    NSString *pathSting = [NSString stringWithFormat:@"https://api.tiles.mapbox.com/v4/geocode/mapbox.places/%@.json?access_token=%@",[addressString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], self.accessToken];
+    NSString *pathSting = [NSMutableString stringWithFormat:@"https://api.tiles.mapbox.com/v4/geocode/mapbox.places/%@.json?access_token=%@",[addressString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], self.accessToken];
     
     if (proximity) {
-        [pathSting stringByAppendingString:[NSString stringWithFormat:@"&proximity=%f,%f", proximity.coordinate.longitude, proximity.coordinate.longitude]];
+        pathSting = [pathSting stringByAppendingString:[NSString stringWithFormat:@"&proximity=%f,%f", proximity.coordinate.longitude, proximity.coordinate.longitude]];
     }
     
     if(types) {
-        [pathSting stringByAppendingString:[TIMapboxGeocoder typesParamsWithTypes:types]];
+        pathSting = [pathSting stringByAppendingString:[TIMapboxGeocoder typesParamsWithTypes:types]];
     }
     
     NSURL *path = [NSURL URLWithString:pathSting];
@@ -127,6 +127,11 @@ NSString * const TIGeocoderErrorDomain = @"TIGeocoderErrorDomain";
 #pragma mark - Types option
 
 + (NSString*) typesParamsWithTypes:(TIGeocoderType) types {
+    
+    if (types & TIGeocoderTypeNone) {
+        return @"";
+    }
+    
     NSMutableString* typesString = [[NSMutableString alloc] initWithString:@"&types="];
     
     if (types & TIGeocoderTypeCountry) {

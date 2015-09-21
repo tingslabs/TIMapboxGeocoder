@@ -27,13 +27,14 @@ typedef NS_ENUM(NSInteger, TIGeocoderErrorCode) {
 
 /** @name Types for geocoding */
 
-typedef NS_ENUM(NSInteger, TIGeocoderType) {
-    TIGeocoderTypeCountry = (1 << 0),
-    TIGeocoderTypeRegion = (1 << 1),
-    TIGeocoderTypePostcode = (1 << 2),
-    TIGeocoderTypePlace = (1 << 3),
-    TIGeocoderTypeAddress = (1 << 4),
-    TIGeocoderTypePoi = (1 << 5)
+typedef NS_OPTIONS(NSInteger, TIGeocoderType) {
+    TIGeocoderTypeNone     = 0,
+    TIGeocoderTypeCountry  = 1 << 0,
+    TIGeocoderTypeRegion   = 1 << 1,
+    TIGeocoderTypePostcode = 1 << 2,
+    TIGeocoderTypePlace    = 1 << 3,
+    TIGeocoderTypeAddress  = 1 << 4,
+    TIGeocoderTypePoi      = 1 << 5
 };
 
 /** @name Init Method */
