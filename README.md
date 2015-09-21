@@ -32,14 +32,14 @@ You need a Mapbox access token
 ### Geocoding
 
 ```objective-c
-    TIMapboxGeocoder* geocoder = [[TIMapboxGeocoder alloc] initWithAccessToken:@"XXXX-XXXXX-XXXXX"];
-    [geocoder geocodeAddressString:@"Paris" proximity:nil completionHandler:^(NSArray *results, NSError *error) {
-        if (error) {
-            // Handle error
-        }
-        TIPlacemark* placemark = results.firstObject;
-        NSLog(@"First placemark name : %@", placemark.name);
-    }]; 
+TIMapboxGeocoder* geocoder = [[TIMapboxGeocoder alloc] initWithAccessToken:@"XXXX-XXXXX-XXXXX"];
+[geocoder geocodeAddressString:@"Paris" proximity:nil types:TIGeocoderTypeNone completionHandler:^(NSArray *results, NSError *error) {
+    if (error) {
+        // Handle error
+    }
+    TIPlacemark* placemark = results.firstObject;
+    NSLog(@"First placemark name : %@", placemark.name);
+}]; 
 ```
 
 Nb : proximity can be nil or a `CLLocation` object near the search area
@@ -47,15 +47,27 @@ Nb : proximity can be nil or a `CLLocation` object near the search area
 ### Reverse Geocoding
 
 ```objective-c
-    CLLocation* location = [[CLLocation alloc] initWithLatitude:0.0 longitude:0.0];
-    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *results, NSError *error) {
-        if (error) {
-            // Handle error
-        }
-        TIPlacemark* placemark = results.firstObject;
-        NSLog(@"First placemark name : %@", placemark.name);
+CLLocation* location = [[CLLocation alloc] initWithLatitude:0.0 longitude:0.0];
+[geocoder reverseGeocodeLocation:location types:TIGeocoderTypeNone completionHandler:^(NSArray *results, NSError *error) {
+    if (error) {
+        // Handle error
+    }
+    TIPlacemark* placemark = results.firstObject;
+    NSLog(@"First placemark name : %@", placemark.name);
 }];
 ```
+
+### Types of places
+
+  * `TIGeocoderTypeNone`
+  * `TIGeocoderTypeCountry`
+  * `TIGeocoderTypeRegion`
+  * `TIGeocoderTypePostcode`
+  * `TIGeocoderTypePlace`
+  * `TIGeocoderTypeAddress`
+  * `TIGeocoderTypePoi`
+    
+See https://www.mapbox.com/developers/api/geocoding/ for more details
 
 ### TIPlacemark object
 
