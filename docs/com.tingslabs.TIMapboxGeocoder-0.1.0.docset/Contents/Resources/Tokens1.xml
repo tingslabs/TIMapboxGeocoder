@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/TIMapboxGeocoder.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/TIMapboxGeocoder</TokenIdentifier>
+			<Abstract type="html">Map Box Geocoder</Abstract>
+			<DeclaredIn>TIMapboxGeocoder.h</DeclaredIn>
+            
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TIMapboxGeocoder/initWithAccessToken:</TokenIdentifier>
+			<Abstract type="html">Initialize the Geocoder</Abstract>
+			<DeclaredIn>TIMapboxGeocoder.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithAccessToken:(NSString *)accessToken</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>accessToken</Name>
+					<Abstract type="html">The Mapbox access Token</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">a Geocoder instance</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithAccessToken:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TIMapboxGeocoder/reverseGeocodeLocation:types:completionHandler:</TokenIdentifier>
+			<Abstract type="html">Reverse Geocoding with a location</Abstract>
+			<DeclaredIn>TIMapboxGeocoder.h</DeclaredIn>
+			
+			<Declaration>- (void)reverseGeocodeLocation:(CLLocation *)location types:(TIGeocoderType)types completionHandler:(void ( ^ ) ( NSArray *results , NSError *error ))completionHandler</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>location</Name>
+					<Abstract type="html">a CLLocation for the reverse geocoding</Abstract>
+				</Parameter><Parameter>
+					<Name>types</Name>
+					<Abstract type="html">one or serveral types for the places (optional)</Abstract>
+				</Parameter><Parameter>
+					<Name>completionHandler</Name>
+					<Abstract type="html">the completion handler with error and/or results</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/reverseGeocodeLocation:types:completionHandler:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TIMapboxGeocoder/geocodeAddressString:proximity:types:completionHandler:</TokenIdentifier>
+			<Abstract type="html">Geocoding with query</Abstract>
+			<DeclaredIn>TIMapboxGeocoder.h</DeclaredIn>
+			
+			<Declaration>- (void)geocodeAddressString:(NSString *)addressString proximity:(CLLocation *)proximity types:(TIGeocoderType)types completionHandler:(void ( ^ ) ( NSArray *results , NSError *error ))completionHandler</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>addressString</Name>
+					<Abstract type="html">the search query</Abstract>
+				</Parameter><Parameter>
+					<Name>proximity</Name>
+					<Abstract type="html">a CLLocation for the proximity search (optional)</Abstract>
+				</Parameter><Parameter>
+					<Name>types</Name>
+					<Abstract type="html">one or serveral types for the places (optional)</Abstract>
+				</Parameter><Parameter>
+					<Name>completionHandler</Name>
+					<Abstract type="html">the completion handler with error and/or results</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/geocodeAddressString:proximity:types:completionHandler:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>
