@@ -31,9 +31,14 @@ NSString * const TIGeocoderErrorDomain = @"TIGeocoderErrorDomain";
 #pragma mark - Public API
 
 - (void) reverseGeocodeLocation:(CLLocation*)location
+                          types:(TIGeocoderType) types
               completionHandler:(void (^)(NSArray *results, NSError *error)) completionHandler {
     NSURLSession *session = [NSURLSession sharedSession];
     NSString *pathSting = [NSString stringWithFormat:@"https://api.tiles.mapbox.com/v4/geocode/mapbox.places/%f,%f.json?access_token=%@",location.coordinate.longitude, location.coordinate.latitude, self.accessToken];
+    
+    if(types) {
+        [pathSting stringByAppendingString:[TIMapboxGeocoder typesParamsWithTypes:types]];
+    }
     
     NSURL *path = [NSURL URLWithString:pathSting];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:path cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
@@ -58,6 +63,7 @@ NSString * const TIGeocoderErrorDomain = @"TIGeocoderErrorDomain";
 
 - (void) geocodeAddressString:(NSString*)addressString
                     proximity:(CLLocation*) proximity
+                        types:(TIGeocoderType) types
             completionHandler:(void (^)(NSArray *results, NSError *error)) completionHandler {
     
     NSURLSession *session = [NSURLSession sharedSession];
@@ -65,6 +71,10 @@ NSString * const TIGeocoderErrorDomain = @"TIGeocoderErrorDomain";
     
     if (proximity) {
         [pathSting stringByAppendingString:[NSString stringWithFormat:@"&proximity=%f,%f", proximity.coordinate.longitude, proximity.coordinate.longitude]];
+    }
+    
+    if(types) {
+        [pathSting stringByAppendingString:[TIMapboxGeocoder typesParamsWithTypes:types]];
     }
     
     NSURL *path = [NSURL URLWithString:pathSting];
@@ -112,6 +122,40 @@ NSString * const TIGeocoderErrorDomain = @"TIGeocoderErrorDomain";
     }
     
     return nil;
+}
+
+#pragma mark - Types option
+
++ (NSString*) typesParamsWithTypes:(TIGeocoderType) types {
+    NSMutableString* typesString = [[NSMutableString alloc] initWithString:@"&types="];
+    
+    if (types & TIGeocoderTypeCountry) {
+        [typesString appendString:@"country,"];
+    }
+    if (types & TIGeocoderTypeRegion) {
+        [typesString appendString:@"region,"];
+    }
+    if (types & TIGeocoderTypePostcode) {
+        [typesString appendString:@"postcode,"];
+    }
+    if (types & TIGeocoderTypePlace) {
+        [typesString appendString:@"place,"];
+    }
+    if (types & TIGeocoderTypeAddress) {
+        [typesString appendString:@"address,"];
+    }
+    if (types & TIGeocoderTypePoi) {
+        [typesString appendString:@"poi,"];
+    }
+    
+    // Delete last comma
+    NSRange lastComma = [typesString rangeOfString:@"," options:NSBackwardsSearch];
+    if(lastComma.location != NSNotFound) {
+        typesString = [[NSMutableString alloc] initWithString:[typesString
+                                                               stringByReplacingCharactersInRange:lastComma withString: @""]];
+    }
+    
+    return typesString;
 }
 
 #pragma mark - Parsing
@@ -177,6 +221,15 @@ NSString * const TIGeocoderErrorDomain = @"TIGeocoderErrorDomain";
 - (NSString*) name {
     if([[self.featureJSON objectForKey:@"place_name"] isKindOfClass:[NSString class]]) {
         return [self.featureJSON objectForKey:@"place_name"];
+    }
+    return nil;
+}
+
+- (NSString*) type {
+    if ([[self.featureJSON objectForKey:@"properties"] isKindOfClass:[NSDictionary class]]) {
+        if ([[[self.featureJSON objectForKey:@"properties"] objectForKey:@"type"] isKindOfClass:[NSString class]]) {
+            return [[self.featureJSON objectForKey:@"properties"] objectForKey:@"type"];
+        }
     }
     return nil;
 }

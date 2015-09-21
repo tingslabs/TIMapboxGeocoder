@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/TIPlacemark.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/TIPlacemark</TokenIdentifier>
+			<Abstract type="html">Placemark object</Abstract>
+			<DeclaredIn>TIMapboxGeocoder.h</DeclaredIn>
+            
+			
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TIPlacemark/initWithFeatureJSON:</TokenIdentifier>
+			<Abstract type="html">Initialize the Placemark</Abstract>
+			<DeclaredIn>TIMapboxGeocoder.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithFeatureJSON:(NSDictionary *)featureJSON</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>featureJSON</Name>
+					<Abstract type="html">the NSDictionary from the Mapbox JSON</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">a Placemark instance</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithFeatureJSON:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TIPlacemark/location</TokenIdentifier>
+			<Abstract type="html">The CLLocation of the Placemark</Abstract>
+			<DeclaredIn>TIMapboxGeocoder.h</DeclaredIn>
+			
+			<Declaration>- (CLLocation *)location</Declaration>
+			
+			<ReturnValue><Abstract type="html">The CLLocation of the Placemark</Abstract></ReturnValue>
+			<Anchor>//api/name/location</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TIPlacemark/name</TokenIdentifier>
+			<Abstract type="html">the name of the Placemark</Abstract>
+			<DeclaredIn>TIMapboxGeocoder.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)name</Declaration>
+			
+			<ReturnValue><Abstract type="html">the name of the Placemark</Abstract></ReturnValue>
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/TIPlacemark/type</TokenIdentifier>
+			<Abstract type="html">the type of the Placemark</Abstract>
+			<DeclaredIn>TIMapboxGeocoder.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)type</Declaration>
+			
+			<ReturnValue><Abstract type="html">the type of the Placemark</Abstract></ReturnValue>
+			<Anchor>//api/name/type</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>
