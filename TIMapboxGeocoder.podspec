@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TIMapboxGeocoder"
-  s.version          = "0.1.0"
+  s.version          = "0.2.0"
   s.summary          = "Mapbox geocoder in Objective-C"
 
   s.description      = "MapBox geocoder in Objective-C for geocoding and reverse geocoding with Mapbox geocoding API"
